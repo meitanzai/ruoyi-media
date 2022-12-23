@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div class="user-info-head" @click="editCropper()"><img v-bind:src="options.img" title="点击上传头像" class="img-circle img-lg" /></div>
-    <el-dialog :title="title" :visible.sync="open" width="800px" append-to-body @opened="modalOpened"  @close="closeDialog">
+    <div class="user-info-head" @click="editCropper()"><img v-bind:src="options.img" title="点击上传头像"
+                                                            class="img-movie img-movie-lg"/></div>
+    <el-dialog :title="title" :visible.sync="open" width="800px" append-to-body @opened="modalOpened"
+               @close="closeDialog">
       <el-row>
         <el-col :xs="24" :md="12" :style="{height: '350px'}">
           <vue-cropper
@@ -18,12 +20,12 @@
           />
         </el-col>
         <el-col :xs="24" :md="12" :style="{height: '350px'}">
-          <div class="avatar-upload-preview">
-            <img :src="previews.url" :style="previews.img" />
+          <div  class="movie-image-upload-preview">
+            <img :src="previews.url" :style="previews.img"/>
           </div>
         </el-col>
       </el-row>
-      <br />
+      <br/>
       <el-row>
         <el-col :lg="2" :sm="3" :xs="3">
           <el-upload action="#" :http-request="requestUpload" :show-file-list="false" :before-upload="beforeUpload">
@@ -55,15 +57,15 @@
 
 <script>
 import store from "@/store";
-import { VueCropper } from "vue-cropper";
-import { uploadAvatar } from "@/api/system/user";
-import { debounce } from '@/utils'
+import {VueCropper} from "vue-cropper";
+import {debounce} from '@/utils'
+import {uploadImages} from "@/api/common";
 
 export default {
-  components: { VueCropper },
+  components: {VueCropper},
   props: {
-    user: {
-      type: Object
+    value: {
+      value: [String, Object, Array],
     }
   },
   data() {
@@ -73,18 +75,31 @@ export default {
       // 是否显示cropper
       visible: false,
       // 弹出层标题
-      title: "修改头像",
+      title: "修改封面",
       options: {
         img: store.getters.avatar, //裁剪图片的地址
         autoCrop: true, // 是否默认生成截图框
-        autoCropWidth: 200, // 默认生成截图框宽度
-        autoCropHeight: 200, // 默认生成截图框高度
+        autoCropWidth: 234, // 默认生成截图框宽度
+        autoCropHeight: 332, // 默认生成截图框高度
         fixedBox: true, // 固定截图框大小 不允许改变
-        outputType:"png" // 默认生成截图为PNG格式
+        outputType: "png" // 默认生成截图为PNG格式
       },
       previews: {},
       resizeHandler: null
     };
+  },
+  watch: {
+    value: {
+      handler(val) {
+        if (val) {
+          this.options.img =  this.fileUploadHost + val
+        } else {
+          return ''
+        }
+      },
+      deep: true,
+      immediate: true
+    }
   },
   methods: {
     // 编辑头像
@@ -137,15 +152,17 @@ export default {
     uploadImg() {
       this.$refs.cropper.getCropBlob(data => {
         let formData = new FormData();
-        formData.append("avatarfile", data);
-        uploadAvatar(formData).then(response => {
+        formData.append("file", data);
+        uploadImages(formData).then(response => {
           this.open = false;
-          this.options.img = this.fileUploadHost + response.imgUrl;
-          store.commit('SET_AVATAR', this.options.img);
+          this.options.img = this.fileUploadHost + response.url;
+          this.$emit("input", response.url);
           this.$modal.msgSuccess("修改成功");
           this.visible = false;
         });
       });
+
+
     },
     // 实时预览
     realTime(data) {
@@ -153,7 +170,7 @@ export default {
     },
     // 关闭窗口
     closeDialog() {
-      this.options.img = store.getters.avatar
+      this.options.img = this.fileUploadHost + this.value
       this.visible = false;
       window.removeEventListener("resize", this.resizeHandler)
     }
@@ -161,14 +178,39 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+
+
+.movie-image-upload-preview {
+  position: relative;
+  top: 2%;
+  left: 2%;
+  transform: translate(15%, -2%);
+  width: 234px;
+  height: 332.6px;
+  border-radius: 2%;
+  box-shadow: 0 0 4px #ccc;
+  overflow: hidden;
+}
+
 .user-info-head {
   position: relative;
   display: inline-block;
-  height: 120px;
+  width: 234px;
+  height: 332.6px;
+}
+
+/* image */
+.img-movie {
+  border-radius: 2%;
+}
+
+.img-movie-lg {
+  width: 234px;
+  height: 332.6px;
 }
 
 .user-info-head:hover:after {
-  content: '+';
+  content: '';
   position: absolute;
   left: 0;
   right: 0;
@@ -182,6 +224,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   cursor: pointer;
   line-height: 110px;
-  border-radius: 50%;
+  border-radius: 2%;
 }
 </style>

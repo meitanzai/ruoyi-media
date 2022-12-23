@@ -172,20 +172,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="6" :offset="1" >
-            <el-form-item label="" class="images-uploader" prop="images">
-              <el-upload
-                class="el-upload"
-                :action="commonUploadImagesUrl"
-                :show-file-list="false"
-                :on-success="handleImagesSuccess"
-                :before-upload="beforeImagesUpload"
-                :headers="headers"
-
-              >
-                <img v-if="form.images" :src="fileUploadHost + form.images" class="images">
-                <i v-else class="el-icon-plus images-uploader-icon"></i>
-              </el-upload>
-            </el-form-item>
+            <MovieImages v-model="form.images"></MovieImages>
           </el-col>
         </el-row>
 
@@ -468,6 +455,7 @@ import { listCategory } from "@/api/media/category";
 import { getToken } from "@/utils/auth";
 import Editor from "../../../components/Editor";
 import FileTable from '@/components/File/FileTable'
+import MovieImages from './movieImages'
 import {
   getFileListByPath,
   getFileListByType,
@@ -481,7 +469,8 @@ export default {
   name: "MovieDetail",
   components: {
     Editor,
-    FileTable
+    FileTable,
+    MovieImages
   },
   dicts: ['movie_country', 'movie_status', 'movie_type', 'sys_yes_no', 'actor_label', 'video_status', 'common_switch', 'lang', 'movie_storage_type'],
   data() {
@@ -956,29 +945,6 @@ export default {
       if (!row.label) return '';
       return this.selectDictLabels(this.dict.type.actor_label, row.label);
     },
-
-    handleImagesSuccess(res, file) {
-      const code = res.code;
-      if (code === 200) {
-        this.form.images =  res.url;
-        this.$modal.msgSuccess("上传成功！");
-      } else {
-        this.$modal.msgError(res.msg);
-      }
-    },
-    beforeImagesUpload(file) {
-      const isImages = (file.type === 'image/jpeg') || (file.type === 'image/png');
-      const isLt10M = file.size / 1024 / 1024 < 10;
-      if (!isImages) {
-        this.$modal.msgError('上传头像图片只能是 JPG 格式 和 PNG 格式!');
-      }
-      if (!isLt10M) {
-        this.$modal.msgError('上传头像图片大小不能超过 10MB!');
-      }
-      return isImages && isLt10M;
-    },
-
-
     handleVideoSuccess(res, file) {
       const code = res.code;
       if (code === 200) {
@@ -1050,31 +1016,6 @@ export default {
 };
 </script>
 <style scoped>
-.images-uploader .el-upload {
-  border: 2px dashed #d9d9d9;
-  border-radius: 1px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.images-uploader .el-upload:hover {
-  border-color: #409EFF;
-}
-.images-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 234px;
-  height: 332.6px;
-  line-height:332.6px;
-  text-align: center;
-}
-.images {
-  left: 10px;
-  width: 234px;
-  height: 332.6px;
-  display: block;
-}
-
 .actorImages {
   width: 100px;
   height: 144px;
