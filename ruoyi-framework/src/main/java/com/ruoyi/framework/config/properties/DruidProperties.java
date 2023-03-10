@@ -20,6 +20,12 @@ public class DruidProperties {
     @Value("${spring.datasource.druid.maxActive}")
     private int maxActive;
 
+    @Value("${spring.datasource.druid.connectTimeout}")
+    private int connectTimeout;
+
+    @Value("${spring.datasource.druid.socketTimeout}")
+    private int socketTimeout;
+
     @Value("${spring.datasource.druid.maxWait}")
     private int maxWait;
 
@@ -50,6 +56,10 @@ public class DruidProperties {
         datasource.setMaxActive(maxActive);
         datasource.setMinIdle(minIdle);
 
+        /** 配置驱动连接超时时间，检测数据库建立连接的超时时间，单位是毫秒 */
+        datasource.setConnectTimeout(connectTimeout);
+        /** 配置网络超时时间，等待数据库操作完成的网络超时时间，单位是毫秒 */
+        datasource.setSocketTimeout(socketTimeout);
         /** 配置获取连接等待超时的时间 */
         datasource.setMaxWait(maxWait);
 
