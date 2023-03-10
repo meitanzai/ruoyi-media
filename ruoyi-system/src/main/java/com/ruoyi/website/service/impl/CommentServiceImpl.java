@@ -261,7 +261,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
      * @param comment
      */
     private void setCurrentLoginUserInfo(Comment comment) {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         SysUser user = loginUser.getUser();
         comment.setUserId(user.getUserId());
         comment.setEmail(user.getEmail());
@@ -276,7 +276,7 @@ public class CommentServiceImpl extends ServiceImpl<CommentMapper, Comment> impl
      */
     private void setCurrentDeviceInfo(Comment comment) {
         UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
-        String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
+        String ip = IpUtils.getIpAddr();
         Browser browser = userAgent.getBrowser();
         String browserInfo = browser.getName();
         Version version = userAgent.getBrowserVersion();

@@ -66,7 +66,7 @@ public interface ICollectService extends IService<Collect> {
     /**
      * 检查收藏标志
      */
-    public Boolean checkCollectFlag(CheckCollectFlagVO checkCollectFlagVO);
+    public boolean checkCollectFlag(CheckCollectFlagVO checkCollectFlagVO);
 
     /**
      * 查询自己的收藏列表

@@ -613,8 +613,9 @@ insert into sys_config values(2, '用户管理-账号初始密码',         'sys
 insert into sys_config values(3, '主框架页-侧边栏主题',           'sys.index.sideTheme',           'theme-dark',    'Y', 'admin', sysdate(), '', null, '深色主题theme-dark，浅色主题theme-light' );
 insert into sys_config values(4, '账号自助-验证码开关',           'sys.account.captchaEnabled',    'true',          'Y', 'admin', sysdate(), '', null, '是否开启验证码功能（true开启，false关闭）');
 insert into sys_config values(5, '账号自助-是否开启用户注册功能', 'sys.account.registerUser',      'false',         'Y', 'admin', sysdate(), '', null, '是否开启注册用户功能（true开启，false关闭）');
-insert into sys_config values(6, '网盘初始化存储大小(单位M)', 'file.initStorageSize', '1024', 'Y', 'admin', sysdate(), '', NULL, '网盘初始化存储大小(单位M)');
-insert into sys_config values(7, 'sql版本号', 'sql.version', 'V1.002', 'Y', '', sysdate(), '', NULL, 'sql版本号');
+insert into sys_config values(6, '用户登录-黑名单列表',           'sys.login.blackIPList',         '',              'Y', 'admin', sysdate(), '', null, '设置登录IP黑名单限制，多个匹配项以;分隔，支持匹配（*通配、网段）');
+insert into sys_config values(7, '网盘初始化存储大小(单位M)', 'file.initStorageSize', '1024', 'Y', 'admin', sysdate(), '', NULL, '网盘初始化存储大小(单位M)');
+insert into sys_config values(8, 'sql版本号', 'sql.version', 'V1.002', 'Y', '', sysdate(), '', NULL, 'sql版本号');
 
 -- ----------------------------
 -- Table structure for sys_dept
@@ -923,7 +924,9 @@ CREATE TABLE `sys_logininfor`  (
   `status` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '0' COMMENT '登录状态（0成功 1失败）',
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '提示消息',
   `login_time` datetime(0) NULL DEFAULT NULL COMMENT '访问时间',
-  PRIMARY KEY (`info_id`) USING BTREE
+  PRIMARY KEY (`info_id`) USING BTREE,
+  key idx_sys_logininfor_s  (status),
+  key idx_sys_logininfor_lt (login_time)
 ) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '系统访问记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
@@ -1229,7 +1232,11 @@ CREATE TABLE `sys_oper_log`  (
   `status` int(11) NULL DEFAULT 0 COMMENT '操作状态（0正常 1异常）',
   `error_msg` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '错误消息',
   `oper_time` datetime(0) NULL DEFAULT NULL COMMENT '操作时间',
-  PRIMARY KEY (`oper_id`) USING BTREE
+   `cost_time`   bigint(20)      default 0                  comment '消耗时间',
+  PRIMARY KEY (`oper_id`) USING BTREE,
+  key idx_sys_oper_log_bt (business_type),
+  key idx_sys_oper_log_s  (status),
+  key idx_sys_oper_log_ot (oper_time)
 ) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------

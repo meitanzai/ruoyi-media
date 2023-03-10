@@ -40,7 +40,7 @@ public class IntegralRecordController extends BaseController {
     @GetMapping("/myList")
     public TableDataInfo myList(IntegralRecord integralRecord) {
         startPage();
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         integralRecord.setUserId(String.valueOf(loginUser.getUserId()));
         List<IntegralRecord> list = integralRecordService.selectIntegralRecordList(integralRecord);
         return getDataTable(list);

@@ -76,7 +76,7 @@ public class CommentController extends BaseController {
     public AjaxResult deleteBatch(@RequestBody Comment comment) {
         Long commentId = comment.getCommentId();
         Comment dbComment = commentService.selectCommentById(commentId);
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
 
         // 判断该评论是否能够删除
         if (dbComment == null || !loginUser.getUserId().equals(dbComment.getUserId())) {

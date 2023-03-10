@@ -52,7 +52,7 @@ public class PlayLogsServiceImpl implements IPlayLogsService {
      */
     @Override
     public int insertOrUpdatePalyLogs(PlayLogs playLogs) {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         PlayLogs queryPlayLog = new PlayLogs();
         queryPlayLog.setVideoId(playLogs.getVideoId());
         String userId = null;
@@ -85,7 +85,7 @@ public class PlayLogsServiceImpl implements IPlayLogsService {
      */
     private void setCurrentDeviceInfo(PlayLogs playLogs) {
         UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
-        String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
+        String ip = IpUtils.getIpAddr();
         Browser browser = userAgent.getBrowser();
         String browserInfo = browser.getName();
         Version version = userAgent.getBrowserVersion();
@@ -112,7 +112,7 @@ public class PlayLogsServiceImpl implements IPlayLogsService {
         }
         PlayLogs playLogs = new PlayLogs();
         playLogs.setVideoId(videoId);
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         String userId = null;
         if (loginUser != null) {
             userId = loginUser.getUserId() + "";

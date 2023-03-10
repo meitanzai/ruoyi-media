@@ -63,7 +63,7 @@ public class SearchLogServiceImpl implements ISearchLogService {
      */
     @Override
     public int insertSearchLog(String keyword) {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         SearchLog searchLog = new SearchLog();
         if (loginUser != null) {
             searchLog.setUserId(loginUser.getUserId() + "");
@@ -81,7 +81,7 @@ public class SearchLogServiceImpl implements ISearchLogService {
      */
     private void setCurrentDeviceInfo(SearchLog searchLog) {
         UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
-        String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
+        String ip = IpUtils.getIpAddr();
         Browser browser = userAgent.getBrowser();
         String browserInfo = browser.getName();
         Version version = userAgent.getBrowserVersion();

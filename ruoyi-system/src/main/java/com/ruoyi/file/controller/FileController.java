@@ -31,8 +31,6 @@ import com.ruoyi.ufo.operation.rename.domain.RenameFile;
 import com.ruoyi.ufo.util.PathUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -79,7 +77,7 @@ public class FileController extends BaseController {
     @PostMapping("/createfile")
     public AjaxResult createFile(@RequestBody CreateFileDTO createFileDto) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         List<UserFile> userFiles = userFileService.selectUserFileByNameAndPath(createFileDto.getFileName(), createFileDto.getFilePath(), loginUser.getUserId());
         if (userFiles != null && !userFiles.isEmpty()) {
             return error(("同名文件已存在"));
@@ -103,7 +101,7 @@ public class FileController extends BaseController {
     @PostMapping("/renamefile")
     public AjaxResult renameFile(@RequestBody RenameFileDTO renameFileDto) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         UserFile userFile = userFileService.getById(renameFileDto.getUserFileId());
 
         List<UserFile> userFiles = userFileService.selectUserFileByNameAndPath(renameFileDto.getFileName(), renameFileDto.getFilePath(), loginUser.getUserId());
@@ -159,7 +157,7 @@ public class FileController extends BaseController {
     @PostMapping("/batchdeletefile")
     public AjaxResult deleteImageByIds(@RequestBody BatchDeleteFileDTO batchDeleteFileDto) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
 
         List<UserFile> userFiles = JSON.parseArray(batchDeleteFileDto.getFiles(), UserFile.class);
         // DigestUtils.md5Hex("data");
@@ -176,7 +174,7 @@ public class FileController extends BaseController {
     @PostMapping("/deletefile")
     public AjaxResult deleteFile(@RequestBody DeleteFileDTO deleteFileDto) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         userFileService.deleteUserFile(deleteFileDto.getUserFileId(), loginUser.getUserId());
         fileDealComp.deleteESByUserFileId(deleteFileDto.getUserFileId());
         return success();
@@ -188,7 +186,7 @@ public class FileController extends BaseController {
     @PostMapping("/unzipfile")
     public AjaxResult unzipFile(@RequestBody UnzipFileDTO unzipFileDto) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         String zipFileUrl = PathUtil.getStaticPath() + unzipFileDto.getFileUrl();
         File file = FileOperation.newFile(zipFileUrl);
         String extendName = FileUtil.getFileExtendName(zipFileUrl);
@@ -263,7 +261,7 @@ public class FileController extends BaseController {
     @PostMapping("/movefile")
     public AjaxResult moveFile(@RequestBody MoveFileDTO moveFileDto) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         String oldfilePath = moveFileDto.getOldFilePath();
         String newfilePath = moveFileDto.getFilePath();
         String fileName = moveFileDto.getFileName();
@@ -278,7 +276,7 @@ public class FileController extends BaseController {
     @PostMapping("/batchmovefile")
     public AjaxResult batchMoveFile(@RequestBody BatchMoveFileDTO batchMoveFileDto) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         String files = batchMoveFileDto.getFiles();
         String newfilePath = batchMoveFileDto.getFilePath();
         List<UserFile> fileList = JSON.parseArray(files, UserFile.class);
@@ -294,7 +292,7 @@ public class FileController extends BaseController {
     @GetMapping("/selectfilebyfiletype")
     public AjaxResult selectFileByFileType(int fileType, Long currentPage, Long pageCount) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         long userId = loginUser.getUserId();
         //startPage();
         List<FileListVo> fileList = new ArrayList<>();
@@ -330,7 +328,7 @@ public class FileController extends BaseController {
     @Log(title = "获取文件树", businessType = BusinessType.File)
     @GetMapping("/getfiletree")
     public AjaxResult getFileTree() {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         long userId = loginUser.getUserId();
 
         List<UserFile> userFileList = userFileService.selectFilePathTreeByUserId(loginUser.getUserId());
@@ -377,7 +375,7 @@ public class FileController extends BaseController {
     public AjaxResult getFileList(FileListDTO fileListDto) {
 
         UserFile userFile = new UserFile();
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         userFile.setUserId(loginUser.getUserId());
         List<FileListVo> fileList = null;
         userFile.setFilePath(PathUtil.urlDecode(fileListDto.getFilePath()));

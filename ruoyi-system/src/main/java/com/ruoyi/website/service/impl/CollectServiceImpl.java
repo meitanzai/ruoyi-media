@@ -91,18 +91,14 @@ public class CollectServiceImpl extends ServiceImpl<CollectMapper, Collect> impl
     }
 
     @Override
-    public Boolean checkCollectFlag(CheckCollectFlagVO checkCollectFlagVO) {
+    public boolean checkCollectFlag(CheckCollectFlagVO checkCollectFlagVO) {
         Long userId = SecurityUtils.getUserId();
         LambdaQueryWrapper<Collect> lambdaQueryWrapper = new LambdaQueryWrapper<>();
         lambdaQueryWrapper.eq(Collect::getTargetId, checkCollectFlagVO.getTargetId())
                 .eq(Collect::getUserId, userId)
                 .eq(Collect::getTableName, checkCollectFlagVO.getTableName());
         List<Collect> list = this.list(lambdaQueryWrapper);
-        if (list.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return !list.isEmpty();
     }
 
     @Override

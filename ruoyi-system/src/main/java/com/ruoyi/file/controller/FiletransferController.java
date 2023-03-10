@@ -76,7 +76,7 @@ public class FiletransferController extends BaseController {
     @Log(title = "极速上传,校验文件MD5判断文件是否存在", businessType = BusinessType.File)
     public AjaxResult uploadFileSpeed(UploadFileDTO uploadFileDto) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
 
         boolean isCheckSuccess = storageService.checkStorage(loginUser.getUserId(), uploadFileDto.getTotalSize());
         if (!isCheckSuccess) {
@@ -121,7 +121,7 @@ public class FiletransferController extends BaseController {
     @PostMapping("/uploadfile")
     @Log(title = "上传文件", businessType = BusinessType.File)
     public AjaxResult uploadFile(HttpServletRequest request, UploadFileDTO uploadFileDto) {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         filetransferService.uploadFile(request, uploadFileDto, loginUser.getUserId());
         UploadFileVo uploadFileVo = new UploadFileVo();
         return success(uploadFileVo);
@@ -220,7 +220,7 @@ public class FiletransferController extends BaseController {
     @Log(title = "获取存储信息", businessType = BusinessType.File)
     @GetMapping("/getstorage")
     public AjaxResult getStorage() {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         StorageBean storageBean = new StorageBean();
         storageBean.setUserId(loginUser.getUserId());
         Long storageSize = filetransferService.selectStorageSizeByUserId(loginUser.getUserId());

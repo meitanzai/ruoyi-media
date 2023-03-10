@@ -75,16 +75,13 @@ public class VideoUtils {
      * @return
      * @desc 检查视频时间是否一致
      */
-    public Boolean checkVideoTime(String source, String target) {
+    public boolean checkVideoTime(String source, String target) {
         String sourceTime = getVideoInfoByFile(source).getVideoTime();
         String targetTime = getVideoInfoByFile(target).getVideoTime();
         if (sourceTime == null || targetTime == null) {
             return false;
         }
-        if (sourceTime.equals(targetTime)) {
-            return true;
-        }
-        return false;
+        return sourceTime.equals(targetTime);
     }
 
     /**

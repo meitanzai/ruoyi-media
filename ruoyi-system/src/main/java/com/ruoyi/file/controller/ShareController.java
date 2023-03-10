@@ -60,7 +60,7 @@ public class ShareController extends BaseController {
     @Log(title = "分享文件", businessType = BusinessType.File)
     public AjaxResult shareFile(@RequestBody ShareFileDTO shareSecretDTO) {
         ShareFileVO shareSecretVO = new ShareFileVO();
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
 
         String uuid = UUID.randomUUID().toString().replace("-", "");
         Share share = new Share();
@@ -109,7 +109,7 @@ public class ShareController extends BaseController {
     @Transactional(rollbackFor = Exception.class)
     public AjaxResult saveShareFile(@RequestBody SaveShareFileDTO saveShareFileDTO) {
 
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         List<ShareFile> fileList = JSON.parseArray(saveShareFileDTO.getFiles(), ShareFile.class);
         String savefilePath = saveShareFileDTO.getFilePath();
         Long userId = loginUser.getUserId();
@@ -151,7 +151,7 @@ public class ShareController extends BaseController {
     @Log(title = "查看已分享列表", businessType = BusinessType.File)
     @GetMapping("/getMyShareList")
     public AjaxResult getMyShareList(ShareListDTO shareListDTO) {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         List<ShareListVO> shareList = shareService.selectShareList(shareListDTO, loginUser.getUserId());
         int total = shareService.selectShareListTotalCount(shareListDTO, loginUser.getUserId());
         Map<String, Object> map = new HashMap<>();

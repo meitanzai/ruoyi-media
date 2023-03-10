@@ -103,7 +103,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         article.setOpposeCount(0L);
         article.setClickCount(0L);
         article.setCollectCount(0L);
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         article.setAuthor(loginUser.getUser().getNickName());
         return articleMapper.insert(article);
     }

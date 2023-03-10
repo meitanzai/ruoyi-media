@@ -120,7 +120,7 @@ public class SignRecordServiceImpl implements ISignRecordService {
     @Override
     public SignRecordVO getSignRecord() {
         SignRecordVO signRecordVO = new SignRecordVO();
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         String userId = loginUser.getUserId() + "";
         //判断最后更新时间，如果更新时间是今天 直接返回账户数据，如果不是则调用一次存过进行返回
         Account account = accountMapper.selectAccountByUserId(userId);
@@ -176,7 +176,7 @@ public class SignRecordServiceImpl implements ISignRecordService {
 
     @Override
     public SignRecordVO sign() {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         String userId = loginUser.getUserId() + "";
         Account account = accountMapper.selectAccountByUserId(userId);
         Date lastSignTime = account.getLastSignTime();

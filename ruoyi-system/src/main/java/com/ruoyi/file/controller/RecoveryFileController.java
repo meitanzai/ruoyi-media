@@ -71,7 +71,7 @@ public class RecoveryFileController extends BaseController {
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo getRecoveryFileList() {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         startPage();
         List<RecoveryFileListVo> recoveryFileList = recoveryFileService.selectRecoveryFileList(loginUser.getUserId());
         return getDataTable(recoveryFileList);
@@ -81,7 +81,7 @@ public class RecoveryFileController extends BaseController {
     @PostMapping(value = "/restorefile")
     @Log(title = "还原文件", businessType = BusinessType.File)
     public AjaxResult restoreFile(@RequestBody RestoreFileDTO restoreFileDto) {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         recoveryFileService.restorefile(restoreFileDto.getDeleteBatchNum(), restoreFileDto.getFilePath(), loginUser.getUserId());
         return success("还原成功！");
     }

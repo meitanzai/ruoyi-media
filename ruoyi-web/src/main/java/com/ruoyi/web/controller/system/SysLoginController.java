@@ -68,7 +68,7 @@ public class SysLoginController extends BaseController {
      */
     @GetMapping("getInfo")
     public AjaxResult getInfo() {
-        LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenService.getLoginUser();
         SysUser user = loginUser.getUser();
         // 角色集合
         Set<String> roles = permissionService.getRolePermission(user);
@@ -91,7 +91,7 @@ public class SysLoginController extends BaseController {
      */
     @GetMapping("getRouters")
     public AjaxResult getRouters() {
-        LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenService.getLoginUser();
         // 用户信息
         SysUser user = loginUser.getUser();
         List<SysMenu> menus = menuService.selectMenuTreeByUserId(user.getUserId());

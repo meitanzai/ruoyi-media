@@ -55,6 +55,15 @@ public class TokenUtil {
      *
      * @return 用户信息
      */
+    public LoginUser getLoginUser() {
+        return getLoginUser(ServletUtils.getRequest());
+    }
+
+    /**
+     * 获取用户身份信息
+     *
+     * @return 用户信息
+     */
     public LoginUser getLoginUser(HttpServletRequest request) {
         // 获取请求携带的令牌
         String token = getToken(request);
@@ -153,7 +162,7 @@ public class TokenUtil {
      */
     public void setUserAgent(LoginUser loginUser) {
         UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
-        String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
+        String ip = IpUtils.getIpAddr();
         loginUser.setIpaddr(ip);
         loginUser.setLoginLocation(AddressUtils.getRealAddressByIP(ip));
         loginUser.setBrowser(userAgent.getBrowser().getName());

@@ -38,7 +38,7 @@ public class SysProfileController extends BaseController {
      */
     @GetMapping
     public AjaxResult profile() {
-        LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenService.getLoginUser();
         SysUser user = loginUser.getUser();
         AjaxResult ajax = AjaxResult.success(user);
         ajax.put("roleGroup", userService.selectUserRoleGroup(loginUser.getUsername()));
@@ -53,15 +53,15 @@ public class SysProfileController extends BaseController {
     @PutMapping
     public AjaxResult updateProfile(@RequestBody SysUser user) {
         if (StringUtils.isNotEmpty(user.getPhonenumber())
-                && UserConstants.NOT_UNIQUE.equals(userService.checkPhoneUnique(user))) {
+                && !userService.checkPhoneUnique(user)) {
             return error("修改用户'" + user.getUserName() + "'失败，手机号码已存在");
         }
         if (StringUtils.isNotEmpty(user.getEmail())
-                && UserConstants.NOT_UNIQUE.equals(userService.checkEmailUnique(user))) {
+                && !userService.checkEmailUnique(user)) {
             return error("修改用户'" + user.getUserName() + "'失败，邮箱账号已存在");
         }
         if (userService.updateUserProfile(user) > 0) {
-            LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+            LoginUser loginUser = tokenService.getLoginUser();
             // 更新缓存用户信息
             loginUser.getUser().setNickName(user.getNickName());
             loginUser.getUser().setPhonenumber(user.getPhonenumber());
@@ -79,7 +79,7 @@ public class SysProfileController extends BaseController {
     @Log(title = "个人信息", businessType = BusinessType.UPDATE)
     @PutMapping("/updatePwd")
     public AjaxResult updatePwd(String oldPassword, String newPassword) {
-        LoginUser loginUser = tokenService.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenService.getLoginUser();
         String userName = loginUser.getUsername();
         String password = loginUser.getPassword();
         if (!SecurityUtils.matchesPassword(oldPassword, password)) {

@@ -88,7 +88,7 @@ public class QuestionServiceImpl implements IQuestionService {
      */
     private void setCurrentDeviceInfo(Question question) {
         UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
-        String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
+        String ip = IpUtils.getIpAddr();
         Browser browser = userAgent.getBrowser();
         String browserInfo = browser.getName();
         Version version = userAgent.getBrowserVersion();
@@ -107,7 +107,7 @@ public class QuestionServiceImpl implements IQuestionService {
      * @param question
      */
     private void setCurrentLoginUserInfo(Question question) {
-        LoginUser loginUser = tokenUtil.getLoginUser(ServletUtils.getRequest());
+        LoginUser loginUser = tokenUtil.getLoginUser();
         SysUser user = loginUser.getUser();
         question.setUserId(user.getUserId());
         question.setEmail(user.getEmail());
