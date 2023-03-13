@@ -72,7 +72,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/index'),
         name: 'Index',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: {title: '首页', icon: 'dashboard', affix: true}
       }
     ]
   },
@@ -86,7 +86,7 @@ export const constantRoutes = [
         path: 'profile',
         component: () => import('@/views/system/user/profile/index'),
         name: 'Profile',
-        meta: { title: '个人中心', icon: 'user' }
+        meta: {title: '个人中心', icon: 'user'}
       }
     ]
   }
@@ -105,7 +105,7 @@ export const dynamicRoutes = [
         path: 'role/:userId(\\d+)',
         component: () => import('@/views/system/user/authRole'),
         name: 'AuthRole',
-        meta: { title: '分配角色', activeMenu: '/system/user'}
+        meta: {title: '分配角色', activeMenu: '/system/user'}
       }
     ]
   },
@@ -119,7 +119,7 @@ export const dynamicRoutes = [
         path: 'user/:roleId(\\d+)',
         component: () => import('@/views/system/role/authUser'),
         name: 'AuthUser',
-        meta: { title: '分配用户', activeMenu: '/system/role'}
+        meta: {title: '分配用户', activeMenu: '/system/role'}
       }
     ]
   },
@@ -133,7 +133,7 @@ export const dynamicRoutes = [
         path: 'index/:dictId(\\d+)',
         component: () => import('@/views/system/dict/data'),
         name: 'Data',
-        meta: { title: '字典数据', activeMenu: '/system/dict'}
+        meta: {title: '字典数据', activeMenu: '/system/dict'}
       }
     ]
   },
@@ -147,7 +147,7 @@ export const dynamicRoutes = [
         path: 'index/:jobId(\\d+)',
         component: () => import('@/views/monitor/job/log'),
         name: 'JobLog',
-        meta: { title: '调度日志', activeMenu: '/monitor/job'}
+        meta: {title: '调度日志', activeMenu: '/monitor/job'}
       }
     ]
   },
@@ -161,51 +161,36 @@ export const dynamicRoutes = [
         path: 'index/:tableId(\\d+)',
         component: () => import('@/views/tool/gen/editTable'),
         name: 'GenEdit',
-        meta: { title: '修改生成配置', activeMenu: '/tool/gen'}
+        meta: {title: '修改生成配置', activeMenu: '/tool/gen'}
       }
     ]
   },
-   {
+  {
     path: '/media',
     component: Layout,
     hidden: true,
     permissions: ['media:movie:edit'],
     children: [
-    {
-     path: 'movie/detail/:movieId?',
-     component: () => import('@/views/media/movie/detail'),
-     name: 'mediaMovieDetail',
-     meta: { title: '电影明细' }
-    }
- ]
-},
-
-{
-    path: '/media',
-    component: Layout,
-    hidden: true,
-    permissions: ['media:actor:list'],
-    children: [
-    {
-     path: 'actor/detail/:id?',
-     component: () => import('@/views/media/actor/detail'),
-     name: 'ActorDetail',
-     meta: { title: '演员详情' }
-    }
- ]
-},
-
+      {
+        path: 'movie/detail/:movieId?',
+        component: () => import('@/views/media/movie/detail'),
+        name: 'mediaMovieDetail',
+        meta: {title: '电影明细'}
+      }
+    ]
+  },
   {
-    path: '/share/:shareBatchNum',
+
+    path: '/share/:shareBatchNum?',
     name: 'Share',
     component: () => import('@/views/resource/Share/index'),
-    meta: { title: '分享文件',breadCrumbName: '分享文件', icon: 'table' },
+    meta: {title: '分享文件', breadCrumbName: '分享文件', icon: 'table'},
     hidden: true
   }
 ]
 
 export default new Router({
   mode: 'history', // 去掉url中的#
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({y: 0}),
   routes: constantRoutes
 })
