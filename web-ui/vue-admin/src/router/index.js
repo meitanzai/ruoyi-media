@@ -182,6 +182,7 @@ export const dynamicRoutes = [
   {
 
     path: '/share/:shareBatchNum?',
+    permissions: ['resource:file:list'],
     name: 'Share',
     component: () => import('@/views/resource/Share/index'),
     meta: {title: '分享文件', breadCrumbName: '分享文件', icon: 'table'},
