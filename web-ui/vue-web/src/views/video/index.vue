@@ -9,6 +9,7 @@
         <div style="min-height: 529px">
           <iFrame v-show="video.url"
                   v-if="video.storageType === `iframe`"
+                  frameHeight="520px"
                   :src="video.url"
           />
           <video-preview v-else ref="player" :videoId="videoId" :autoplay="!dialogVideoFile.visible"></video-preview>

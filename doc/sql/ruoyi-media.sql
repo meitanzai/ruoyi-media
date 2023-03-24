@@ -616,6 +616,7 @@ insert into sys_config values(5, '账号自助-是否开启用户注册功能', 
 insert into sys_config values(6, '用户登录-黑名单列表',           'sys.login.blackIPList',         '',              'Y', 'admin', sysdate(), '', null, '设置登录IP黑名单限制，多个匹配项以;分隔，支持匹配（*通配、网段）');
 insert into sys_config values(7, '网盘初始化存储大小(单位M)', 'file.initStorageSize', '1024', 'Y', 'admin', sysdate(), '', NULL, '网盘初始化存储大小(单位M)');
 insert into sys_config values(8, 'sql版本号', 'sql.version', 'V1.002', 'Y', '', sysdate(), '', NULL, 'sql版本号');
+insert into sys_config values(9, '问答url', 'questionUrl', 'https://chat.forchange.cn', 'Y', '', sysdate(), '', NULL, '问答url');
 
 -- ----------------------------
 -- Table structure for sys_dept

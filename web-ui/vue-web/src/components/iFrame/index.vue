@@ -15,12 +15,15 @@ export default {
     src: {
       type: String,
       required: true
+    },
+    frameHeight: {
+      type: String,
+      required: false
     }
   },
   data() {
     return {
-      //height: document.documentElement.clientHeight - 94.5 + "px;",
-      height: "529px",
+      height: this.frameHeight ? this.frameHeight : (document.documentElement.clientHeight - 94.5 + "px;"),
       loading: true,
       url: this.src
     };

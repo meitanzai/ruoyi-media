@@ -49,6 +49,10 @@ const routes = [
               component: () => import("@/views/article/detail")
             },
             {
+              path: '/question',
+              component: () => import("@/views/question/index")
+            },
+            {
               path: '/ucenter',
               component: () => import("@/views/user/profile/index")
             }
