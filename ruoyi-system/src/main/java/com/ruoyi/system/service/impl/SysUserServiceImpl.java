@@ -486,8 +486,9 @@ public class SysUserServiceImpl implements ISysUserService {
                     successMsg.append("<br/>" + successNum + "、账号 " + user.getUserName() + " 导入成功");
                 } else if (isUpdateSupport) {
                     BeanValidators.validateWithException(validator, user);
-                    checkUserAllowed(user);
-                    checkUserDataScope(user.getUserId());
+                    checkUserAllowed(u);
+                    checkUserDataScope(u.getUserId());
+                    user.setUserId(u.getUserId());
                     user.setUpdateBy(operName);
                     this.updateUser(user);
                     successNum++;
