@@ -119,7 +119,7 @@
         </el-card>
 
 
-        <el-card class="mb20">
+<!--        <el-card class="mb20">
           <h2 class="hometitle">
             用户排行
             <i class="el-tooltip el-icon-refresh item" aria-describedby="el-tooltip-795" tabindex="0"
@@ -127,7 +127,7 @@
             <ul>
               <li style="padding-right: 6px;">
                 <div class="el-row">
-                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar--circle"
+                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar&#45;&#45;circle"
                                                                                  style="height: 40px; width: 40px; line-height: 40px; cursor: pointer;"><img
                     src="http://picture.moguit.cn//blog/admin/jpg/2020/1/31/1580434623431.jpg"
                     style="object-fit: fill;"></span></div>
@@ -151,7 +151,7 @@
             <ul>
               <li style="padding-right: 6px;">
                 <div class="el-row">
-                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar--circle"
+                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar&#45;&#45;circle"
                                                                                  style="height: 40px; width: 40px; line-height: 40px; cursor: pointer;"><img
                     src="http://picture.moguit.cn//blog/admin/jpg/2021/11/29/1638175279455.jpg"
                     style="object-fit: fill;"></span></div>
@@ -175,7 +175,7 @@
             <ul>
               <li style="padding-right: 6px;">
                 <div class="el-row">
-                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar--circle"
+                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar&#45;&#45;circle"
                                                                                  style="height: 40px; width: 40px; line-height: 40px; cursor: pointer;"><img
                     src="http://picture.moguit.cn//blog/admin/jpg/2021/12/2/1638454511732.jpg"
                     style="object-fit: fill;"></span></div>
@@ -199,7 +199,7 @@
             <ul>
               <li style="padding-right: 6px;">
                 <div class="el-row">
-                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar--circle"
+                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar&#45;&#45;circle"
                                                                                  style="height: 40px; width: 40px; line-height: 40px; cursor: pointer;"><img
                     src="http://picture.moguit.cn//blog/admin/jpg/2021/10/25/1635128619445.jpg"
                     style="object-fit: fill;"></span></div>
@@ -210,7 +210,7 @@
             </span></div>
                     <div
                       style="font-size: 12px; color: rgb(114, 119, 123); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                      <!----> <!----> <span><span style="color: rgb(0, 167, 235);">13</span> 评论
+                     <span><span style="color: rgb(0, 167, 235);">13</span> 评论
             </span></div>
                   </div>
                   <div class="el-col el-col-6" style="line-height: 50px; text-align: center;"><i
@@ -221,7 +221,7 @@
             <ul>
               <li style="padding-right: 6px;">
                 <div class="el-row">
-                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar--circle"
+                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar&#45;&#45;circle"
                                                                                  style="height: 40px; width: 40px; line-height: 40px; cursor: pointer;"><img
                     src="http://picture.moguit.cn//blog/admin/jpg/2021/12/3/1638522810665.jpg"
                     style="object-fit: fill;"></span></div>
@@ -233,7 +233,7 @@
                     <div
                       style="font-size: 12px; color: rgb(114, 119, 123); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span><span
                       style="color: rgb(0, 167, 235);">2</span> 文章
-            </span> <!----> <span><span style="color: rgb(0, 167, 235);">6</span> 评论
+            </span> <span><span style="color: rgb(0, 167, 235);">6</span> 评论
             </span></div>
                   </div>
                   <div class="el-col el-col-6" style="line-height: 50px; text-align: center;"><i
@@ -244,7 +244,7 @@
             <ul>
               <li style="padding-right: 6px;">
                 <div class="el-row">
-                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar--circle"
+                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar&#45;&#45;circle"
                                                                                  style="height: 40px; width: 40px; line-height: 40px; cursor: pointer;"><img
                     src="http://picture.moguit.cn//blog/admin/jpg/2021/12/10/1639099941309.jpg"
                     style="object-fit: fill;"></span></div>
@@ -256,7 +256,7 @@
                     <div
                       style="font-size: 12px; color: rgb(114, 119, 123); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span><span
                       style="color: rgb(0, 167, 235);">2</span> 文章
-            </span> <!----> <span><span style="color: rgb(0, 167, 235);">4</span> 评论
+            </span> <span><span style="color: rgb(0, 167, 235);">4</span> 评论
             </span></div>
                   </div>
                   <div class="el-col el-col-6" style="line-height: 50px; text-align: center;"><i
@@ -279,7 +279,7 @@
                     <div
                       style="font-size: 12px; color: rgb(114, 119, 123); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span><span
                       style="color: rgb(0, 167, 235);">2</span> 文章
-            </span> <!----> <span><span style="color: rgb(0, 167, 235);">12</span> 评论
+            </span>  <span><span style="color: rgb(0, 167, 235);">12</span> 评论
             </span></div>
                   </div>
                   <div class="el-col el-col-6" style="line-height: 50px; text-align: center;"><i
@@ -290,7 +290,7 @@
             <ul>
               <li style="padding-right: 6px;">
                 <div class="el-row">
-                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar--circle"
+                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar&#45;&#45;circle"
                                                                                  style="height: 40px; width: 40px; line-height: 40px; cursor: pointer;"><img
                     src="http://picture.moguit.cn//blog/admin/jpg/2021/12/3/1638516754487.jpg"
                     style="object-fit: fill;"></span></div>
@@ -302,7 +302,7 @@
                     <div
                       style="font-size: 12px; color: rgb(114, 119, 123); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"><span><span
                       style="color: rgb(0, 167, 235);">4</span> 文章
-            </span> <!----> <span><span style="color: rgb(0, 167, 235);">20</span> 评论
+            </span> <span><span style="color: rgb(0, 167, 235);">20</span> 评论
             </span></div>
                   </div>
                   <div class="el-col el-col-6" style="line-height: 50px; text-align: center;"><i
@@ -324,7 +324,7 @@
             </span></div>
                     <div
                       style="font-size: 12px; color: rgb(114, 119, 123); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                      <!----> <!----> <span><span style="color: rgb(0, 167, 235);">6</span> 评论
+                      <span><span style="color: rgb(0, 167, 235);">6</span> 评论
             </span></div>
                   </div>
                   <div class="el-col el-col-6" style="line-height: 50px; text-align: center;"><i
@@ -335,7 +335,7 @@
             <ul>
               <li style="padding-right: 6px;">
                 <div class="el-row">
-                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar--circle"
+                  <div class="el-col el-col-6" style="text-align: center;"><span class="el-avatar el-avatar&#45;&#45;circle"
                                                                                  style="height: 40px; width: 40px; line-height: 40px; cursor: pointer;"><img
                     src="http://picture.moguit.cn//blog/admin/jpg/2021/12/3/1638515163917.jpg"
                     style="object-fit: fill;"></span></div>
@@ -346,14 +346,14 @@
             </span></div>
                     <div
                       style="font-size: 12px; color: rgb(114, 119, 123); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                      <!----> <!----> <!----></div>
+                      </div>
                   </div>
                   <div class="el-col el-col-6" style="line-height: 50px; text-align: center;"><i
                     class="el-icon-coin"><span style="font-weight: 550;"> &nbsp;40</span></i></div>
                 </div>
               </li>
             </ul>
-        </el-card>
+        </el-card>-->
 
         <!--关注我们-->
         <About></About>
